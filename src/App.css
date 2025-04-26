@@ -1,0 +1,422 @@
+/* Estilos generales con tema Gruvbox */
+:root {
+  /* Colores Gruvbox */
+  --gruvbox-bg: #282828;
+  --gruvbox-bg-soft: #32302f;
+  --gruvbox-bg-dark: #1d2021;
+  --gruvbox-fg: #ebdbb2;
+  --gruvbox-fg-dim: #d5c4a1;
+  --gruvbox-red: #cc241d;
+  --gruvbox-green: #98971a;
+  --gruvbox-yellow: #d79921;
+  --gruvbox-blue: #458588;
+  --gruvbox-purple: #b16286;
+  --gruvbox-aqua: #689d6a;
+  --gruvbox-orange: #d65d0e;
+  --gruvbox-gray: #a89984;
+
+  /* Variables del tema */
+  --color-bg-light: #fbf1c7;
+  --color-bg-dark: var(--gruvbox-bg);
+  --color-text-light: #3c3836;
+  --color-text-dark: var(--gruvbox-fg);
+  --color-border-light: #d5c4a1;
+  --color-border-dark: #504945;
+  --color-primary: var(--gruvbox-blue);
+  --color-header-light: #ebdbb2;
+  --color-header-dark: var(--gruvbox-bg-soft);
+  --color-code-bg-light: #f2e5bc;
+  --color-code-bg-dark: var(--gruvbox-bg-dark);
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  line-height: 1.5;
+  color: var(--color-text-light);
+  background-color: var(--color-bg-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    color: var(--color-text-dark);
+    background-color: var(--color-bg-dark);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0.2rem;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.0rem;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+/* Estilos para el editor */
+.editor-container {
+  height: 80vh;
+  width: 100%;
+}
+
+/* Estilos para react-resizable-panels */
+.resize-handle {
+  width: 8px !important;
+  background-color: var(--color-border-light);
+  background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAeCAYAAADkftS9AAAAIklEQVQoU2M4c+bMfxAGAgYYmwGrIIiDjrELjpo5aiZeMwF+yNnOs5KSvgAAAABJRU5ErkJggg==');
+  background-repeat: no-repeat;
+  background-position: center;
+  transition: background-color 0.2s ease;
+  cursor: col-resize !important;
+}
+
+.resize-handle:hover, .resize-handle[data-resize-handle-active] {
+  background-color: var(--gruvbox-yellow);
+  width: 10px !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .resize-handle {
+    background-color: var(--color-border-dark);
+  }
+  
+  .resize-handle:hover, .resize-handle[data-resize-handle-active] {
+    background-color: var(--gruvbox-orange);
+  }
+}
+
+.editor-pane, .preview-pane {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-header, .preview-header {
+  background-color: var(--color-header-light);
+  padding: 0.5rem;
+  border-top-left-radius: 0.375rem;
+  border-top-right-radius: 0.375rem;
+  font-weight: 600;
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border-light);
+  border-bottom: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .editor-header, .preview-header {
+    background-color: var(--gruvbox-bg-soft);
+    color: var(--gruvbox-yellow);
+    border-color: var(--color-border-dark);
+  }
+}
+
+.editor-toggle-button {
+  background-color: var(--gruvbox-bg-soft);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.editor-toggle-button:hover {
+  background-color: var(--gruvbox-yellow);
+  color: var(--gruvbox-bg-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  .editor-toggle-button {
+    background-color: var(--gruvbox-bg-dark);
+    color: var(--gruvbox-fg);
+    border-color: var(--gruvbox-gray);
+  }
+  
+  .editor-toggle-button:hover {
+    background-color: var(--gruvbox-orange);
+    color: var(--gruvbox-bg-dark);
+  }
+}
+
+.editor-textarea {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-bg-light);
+  color: var(--color-text-light);
+  border: 1px solid var(--color-border-light);
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  font-family: 'Fira Code', 'Courier New', monospace;
+  font-size: 0.875rem;
+  resize: none;
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.editor-textarea:focus {
+  border-color: var(--gruvbox-blue);
+  box-shadow: 0 0 0 3px rgba(69, 133, 136, 0.2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .editor-textarea {
+    background-color: var(--gruvbox-bg);
+    color: var(--gruvbox-fg);
+    border-color: var(--gruvbox-gray);
+  }
+
+  .editor-textarea:focus {
+    border-color: var(--gruvbox-aqua);
+    box-shadow: 0 0 0 3px rgba(104, 157, 106, 0.2);
+  }
+}
+
+.markdown-preview {
+  flex: 1;
+  width: 100%;
+  padding: 1rem;
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border-light);
+  border-bottom-left-radius: 0.375rem;
+  border-bottom-right-radius: 0.375rem;
+  overflow: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-preview {
+    background-color: var(--gruvbox-bg);
+    border-color: var(--color-border-dark);
+  }
+}
+
+/* Estilos para el contenido markdown renderizado */
+.markdown-content h1 {
+  font-size: 1.8em;
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  text-align: left;
+}
+
+.markdown-content h2 {
+  font-size: 1.5em;
+  margin-top: 0.8em;
+  margin-bottom: 0.5em;
+  font-weight: bold;
+  text-align: left;
+}
+
+.markdown-content p {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
+.markdown-content blockquote {
+  padding-left: 1rem;
+  border-left: 0.25rem solid var(--color-border-light);
+  color: #6b7280;
+  font-style: italic;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-content blockquote {
+    border-left-color: var(--color-border-dark);
+    color: #9ca3af;
+  }
+}
+
+.markdown-content ul {
+  list-style-type: disc;
+  padding-left: 1.5rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content ol {
+  list-style-type: decimal;
+  padding-left: 1.5rem;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-content code {
+  font-family: monospace;
+  background-color: var(--color-code-bg-light);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25rem;
+  font-size: 0.9em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .markdown-content code {
+    background-color: var(--color-code-bg-dark);
+  }
+}
+
+.markdown-content del {
+  text-decoration: line-through;
+}
+
+.markdown-content pre {
+  background-color: var(--color-code-bg-dark);
+  color: #e2e8f0;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  overflow-x: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+.markdown-content pre code {
+  background-color: transparent;
+  padding: 0;
+  border-radius: 0;
+  color: inherit;
+}
+
+/* Estilos para el editor con herramientas */
+.editor-with-toolbar {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex: 1;
+}
+
+.editor-toolbar {
+  background-color: var(--color-bg-light);
+  border: 1px solid var(--color-border-light);
+  border-bottom: none;
+  padding: 0.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+@media (prefers-color-scheme: dark) {
+  .editor-toolbar {
+    background-color: var(--gruvbox-bg);
+    border-color: var(--color-border-dark);
+  }
+}
+
+.toolbar-button {
+  background-color: transparent;
+  border: 1px solid var(--color-border-light);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.875rem;
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.toolbar-button:hover {
+  background-color: var(--gruvbox-yellow);
+  color: var(--gruvbox-bg-dark);
+}
+
+@media (prefers-color-scheme: dark) {
+  .toolbar-button {
+    border-color: var(--color-border-dark);
+    color: var(--gruvbox-fg);
+  }
+  
+  .toolbar-button:hover {
+    background-color: var(--gruvbox-orange);
+    color: var(--gruvbox-bg-dark);
+  }
+}
+
+.toolbar-divider {
+  width: 1px;
+  height: 1.5rem;
+  background-color: var(--color-border-light);
+  margin: 0 0.25rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  .toolbar-divider {
+    background-color: var(--color-border-dark);
+  }
+}
+
+/* Estilos para el pie de página */
+.app-footer {
+  text-align: center;
+  margin-top: 0.1rem; /* Añadir espacio sobre el footer */
+  font-size: 0.875rem;
+  color: var(--gruvbox-gray); /* Usar un color tenue */
+}
+
+.app-footer a {
+  color: var(--gruvbox-blue); /* Color de enlace primario */
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.app-footer a:hover {
+  color: var(--gruvbox-aqua); /* Color al pasar el ratón */
+  text-decoration: underline;
+}
+
+/* Ajustes para tema oscuro si es necesario */
+@media (prefers-color-scheme: dark) {
+  .app-footer {
+    color: var(--gruvbox-gray); 
+  }
+  .app-footer a {
+     color: var(--gruvbox-aqua); /* Color de enlace en tema oscuro */
+  }
+  .app-footer a:hover {
+    color: var(--gruvbox-green); /* Color hover en tema oscuro */
+  }
+}
+
+/* Estilos para el botón de copiar */
+.copy-button {
+  background-color: var(--gruvbox-green);
+  color: var(--gruvbox-bg-dark);
+  border: none;
+  padding: 0.4rem 0.8rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.copy-button:hover {
+  background-color: var(--gruvbox-aqua);
+}
+
+.copy-button:active {
+  transform: scale(0.95); /* Efecto al hacer clic */
+}
+
+/* Estilos para el botón en tema oscuro */
+@media (prefers-color-scheme: dark) {
+  .copy-button {
+    background-color: var(--gruvbox-aqua);
+    color: var(--gruvbox-bg-dark);
+  }
+
+  .copy-button:hover {
+    background-color: var(--gruvbox-green);
+  }
+}
